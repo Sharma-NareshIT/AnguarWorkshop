@@ -1,0 +1,177 @@
+Styles.css
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+app.module.ts
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+imports: [
+    MatFormFieldModule,
+    MatInputModule
+  ]
+
+
+Auto Complete Example:
+================================================
+
+1. Goto "app.module.ts"  and  import modules
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule  } from '@angular/material/autocomplete'; 
+
+imports: [
+  BrowserModule,
+  BrowserAnimationsModule,
+  FormsModule,
+  MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule
+  ],
+
+
+2. Add a new Component
+	>ng  g c  autocompletedemo --skipTests
+
+3.  ".css" 
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .example-option-img {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  
+  [dir='rtl'] .example-option-img {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+4. ".ts"
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-matdemo',
+  templateUrl: './matdemo.component.html',
+  styleUrls: ['./matdemo.component.css']
+})
+export class MatdemoComponent implements OnInit {
+
+  public countries = [
+    {Name: 'India', Flag: 'assets/india.png', CallCode: '+91'},
+    {Name: 'United Kingdom', Flag: 'assets/uk.png', CallCode: '+44'}
+  ];
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+5.  ".html"
+
+<div class="container-fluid">
+    <h2>Auto Complete</h2>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Select Your Country" [matAutocomplete]="countriesList">
+            <mat-autocomplete #countriesList="matAutocomplete">
+                <mat-option *ngFor="let item of countries" [value]="item.Name">
+                    <span><img class="example-option-img" src="{{item.Flag}}"></span>
+                    <span>{{item.Name}}</span>
+                    <span>{{item.CallCode}}</span>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
+
+
+
+Date Picker Example
+==================================================
+
+1. Import "app.module.ts"
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+[
+  MatDatepickerModule,
+    MatNativeDateModule,
+]
+
+
+2.  ".html"
+
+        <h2>Date Picker</h2>
+        <mat-form-field class="example-full-width">
+         <input type="text" [matDatepicker]="picker" matInput >
+           <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+Tabs
+================================================
+
+import {MatTabsModule} from '@angular/material/tabs';
+
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+
+
+
+
+Button Examples
+==================================================
+
+import {MatButtonModule} from '@angular/material/button';
+
+[ MatButtonModule]
+
+<button mat-button color="primary">Primary</button>
+ colors = primary, accent, warn
+
+<button mat-raised-button color="accent">Accent</button>
+
+ <button mat-icon-button color="warn">
+                <mat-icon>favorite / home</mat-icon>
+  </button>
+  <button mat-fab color="warn">Warn</button>
+
+ <button mat-mini-fab color="warn">
+                <mat-icon>favorite</mat-icon>
+ </button>
+
+Spinner
+===========================
+<mat-spinner></mat-spinner>
+
+ProgressBar
+=================
+<mat-progress-bar mode="buffer"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar mode="query"></mat-progress-bar>
+
+Badge
+============================================
+import {MatBadgeModule} from '@angular/material/badge';
+
+<mat-icon color="warn" matBadge="15" matBadgePosition="after" matBadgeColor="black">mail</mat-icon>
